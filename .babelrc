@@ -1,0 +1,13 @@
+{
+    "presets": [
+        [ "env", { "targets": { "node": "8.9.0" } } ]
+    ],
+    "plugins": [
+        [ "flow-runtime", { "annotate": true } ],
+        "transform-flow-strip-types",
+        "transform-decorators-legacy",
+        "transform-object-rest-spread",
+        "source-map-support"
+    ],
+    "sourceMaps": "inline"
+}
