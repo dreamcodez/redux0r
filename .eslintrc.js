@@ -19,7 +19,6 @@ module.exports = {
     },
     "plugins": [
         "flowtype",
-        "react"
     ],
     "globals": {
         "describe": true,
