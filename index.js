@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 import freeze from 'deep-freeze'
 
 const defaultState = freeze({
+    listenStatus: 'down',
     port: 3000
 })
 
@@ -13,6 +14,7 @@ function redux0r(state = defaultState, action) {
         case 'LISTEN':
             return freeze({
                 ...state,
+                listenStatus: 'initializing',
                 port: action.port
             })
         default:
@@ -25,15 +27,15 @@ store.subscribe(() =>
   console.log(store.getState())
 )
 
-function a (port) {
-    store.dispatch({ type: 'LISTEN', port })
+function listen(port) {
+    { type: 'LISTEN', port }
 }
 
 a(3000)
 
 // https://github.com/koajs/koa/issues/659
 // https://www.npmjs.com/package/server-destroy
-function listen(port) {
+function doListen(port) {
     const app = new Koa()
     const server = http.createServer(app.callback())
     server.listen(port)

@@ -11,6 +11,7 @@
     "source-map-support": "^0.5.3"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-flow-runtime": "^0.15.0",
     "babel-plugin-source-map-support": "^1.0.0",
@@ -18,5 +19,13 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "ava": {
+      "files": [
+          "tests/*.js"
+      ]
   }
 }
