@@ -23,7 +23,8 @@
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "eslint": "^4.16.0",
-    "eslint-plugin-flowtype": "^2.42.0"
+    "eslint-plugin-flowtype": "^2.42.0",
+    "flow-bin": "^0.64.0"
   },
   "scripts": {
     "test": "ava"
