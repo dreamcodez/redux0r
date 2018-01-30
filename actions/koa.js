@@ -7,7 +7,7 @@ import Koa from 'koa'
 let server
 
 export function* listen(port) {
-    if (yield select(getListenStatus) === 'initializing') {
+    if ((yield select(getListenStatus)) === 'initializing') {
         console.error('cannot listen while initializing')
     } else {
         yield put({ type: 'LISTEN' })
@@ -17,7 +17,7 @@ export function* listen(port) {
 }
 
 export function* shutdown() {
-    if (yield select(getListenStatus) === 'up') {
+    if ((yield select(getListenStatus)) === 'up') {
         yield put({ type: 'SHUTDOWN' })
         doShutdown()
         yield put({ type: 'SHUTDOWN_COMPLETE' })
