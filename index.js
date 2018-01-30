@@ -19,4 +19,5 @@ saga.run(function* () {
     yield listen(3000)
     yield Promise.delay(3000)
     yield restart()
+    yield shutdown()
 })
