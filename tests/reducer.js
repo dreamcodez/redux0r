@@ -6,17 +6,22 @@ test('my passing test', t => {
 })
 
 test('my failing test', t => {
-    expect(true).to.be(false)
+    expect(true).to.be.eql(false)
+    t.end()
 })
 test('my failing test', t => {
-    expect(true).to.be(false)
+    expect(true).to.be.eql(false)
+    t.end()
 })
 test('my failing test', t => {
-    expect(true).to.be(false)
+    expect(true).to.be.eql(false)
+    t.end()
 })
 test('my failing test', t => {
-    expect(true).to.be(false)
+    expect(true).to.be.eql(false)
+    t.end()
 })
 test('my failing test', t => {
-    expect(true).to.be(false)
+    expect(true).to.be.eql(false)
+    t.end()
 })
