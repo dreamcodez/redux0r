@@ -1,3 +1,5 @@
+import Promise from 'bluebird'
+import { call, put, select } from 'redux-saga/effects'
 
 import http from 'http'
 import destroyable from 'server-destroy'
@@ -5,25 +7,20 @@ import Koa from 'koa'
 import freeze from 'deep-freeze'
 
 let server
-function listening() {
-    return { type: 'LISTENING' };
-}
 
-function listen(port) {
-    const state = store.getState()
-    if (state.listenStatus === 'initializing') {
+function* listen(port) {
+    if (yield select(getListenStatus) === 'initializing') {
         console.error('cannot listen while initializing')
     } else {
-        doListen(port)
-        return { type: 'LISTEN', port };
+        yield call(doListen, port)
+        yield put({ type: 'LISTENING' });
     }
 }
 
-function shutdown() {
-    const state = store.getState()
-    if (state.listenStatus === 'up') {
+function* shutdown() {
+    if (yield select(getListenStatus) === 'up') {
         server.destroy()
-        return store.dispatch({ type: 'SHUTDOWN' });
+        return put({ type: 'SHUTDOWN' })
     } else {
         console.error('cannot shutdown unless listenStatus is \'up\'')
         return
@@ -33,19 +30,14 @@ function shutdown() {
 
 // https://github.com/koajs/koa/issues/659
 // https://www.npmjs.com/package/server-destroy
-function doListen(port) {
+async function doListen(port) {
     const app = new Koa()
     server = http.createServer(app.callback())
-    server.listen(port, () => {
-        store.dispatch({ type: 'LISTENING' })
-    })
+    await Promise.fromCallback(server.listen.bind(server, port))
     destroyable(server)
 }
 
-const store = createStore(redux0r)
-
-store.subscribe(() => console.log(store.getState()))
-listen(3000)
-setTimeout(shutdown, 1000)
-setTimeout(listen.bind(0,3000), 3000)
-setTimeout(shutdown, 5000)
+// state plucker
+function getListenStatus(state) {
+    return state.listenStatus
+}
