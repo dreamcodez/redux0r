@@ -5,7 +5,7 @@ import {
 } from 'redux'
 import createSaga from 'redux-saga'
 import koa from './reducers/koa'
-import { listen, shutdown } from './actions/koa'
+import { listen, shutdown, restart } from './services/koa'
 
 
 const saga = createSaga()
@@ -18,5 +18,5 @@ saga.run(function* () {
     yield Promise.delay(3000)
     yield listen(3000)
     yield Promise.delay(3000)
-    yield shutdown()
+    yield restart()
 })
