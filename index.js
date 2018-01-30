@@ -77,6 +77,6 @@ const store = createStore(redux0r)
 
 store.subscribe(() => console.log(store.getState()))
 listen(3000)
-setTimeout(() =>{
-shutdown()
-}, 1000)
+setTimeout(shutdown, 1000)
+setTimeout(listen.bind(0,3000), 3000)
+setTimeout(shutdown, 5000)
