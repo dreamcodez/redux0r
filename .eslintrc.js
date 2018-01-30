@@ -62,6 +62,7 @@ module.exports = {
             "error",
             "unix"
         ],
+        "no-console": 0,
         "no-case-declarations": "off",
         "object-curly-spacing": [
             "error",
