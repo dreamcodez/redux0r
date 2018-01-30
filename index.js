@@ -10,7 +10,7 @@ const defaultState = freeze({
 
 function redux0r(state = defaultState, action) {
     switch (action.type) {
-        case 'BIND_PORT':
+        case 'LISTEN':
             return freeze({
                 ...state,
                 port: action.port
@@ -24,8 +24,12 @@ const store = createStore(redux0r)
 store.subscribe(() =>
   console.log(store.getState())
 )
-store.dispatch({ type: 'LISTEN', port: 3000 })
 
+function a (port) {
+    store.dispatch({ type: 'LISTEN', port })
+}
+
+a(3000)
 
 // https://github.com/koajs/koa/issues/659
 // https://www.npmjs.com/package/server-destroy
