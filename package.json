@@ -7,6 +7,7 @@
     "deep-freeze": "^0.0.1",
     "koa": "^2.4.1",
     "redux": "^3.7.2",
+    "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.3"
   },
   "devDependencies": {
