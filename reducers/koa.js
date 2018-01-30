@@ -1,7 +1,7 @@
+
 import http from 'http'
 import destroyable from 'server-destroy'
 import Koa from 'koa'
-import { createStore } from 'redux'
 import freeze from 'deep-freeze'
 
 const defaultState = freeze({
@@ -9,7 +9,7 @@ const defaultState = freeze({
     listenPort: null
 })
 
-function redux0r(state = defaultState, action) {
+export default function (state = defaultState, action) {
     switch (action.type) {
         case 'LISTENING':
             return freeze({

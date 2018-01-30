@@ -1,42 +1,12 @@
+
 import http from 'http'
 import destroyable from 'server-destroy'
 import Koa from 'koa'
-import { createStore } from 'redux'
 import freeze from 'deep-freeze'
-
-const defaultState = freeze({
-    listenStatus: 'down',
-    listenPort: null
-})
-
-function redux0r(state = defaultState, action) {
-    switch (action.type) {
-        case 'LISTENING':
-            return freeze({
-                ...state,
-                listenStatus: 'up'
-            })
-        case 'LISTEN':
-            return freeze({
-                ...state,
-                listenStatus: 'initializing',
-                listenPort: action.port
-            })
-        case 'SHUTDOWN':
-            return freeze({
-                ...state,
-                listenStatus: 'down',
-                listenPort: null
-            })
-        default:
-            return state
-    }
-}
-
 
 let server
 function listening() {
-    return store.dispatch({ type: 'LISTENING' });
+    return { type: 'LISTENING' };
 }
 
 function listen(port) {
@@ -45,7 +15,7 @@ function listen(port) {
         console.error('cannot listen while initializing')
     } else {
         doListen(port)
-        return store.dispatch({ type: 'LISTEN', port });
+        return { type: 'LISTEN', port };
     }
 }
 
